@@ -1,0 +1,29 @@
+.buttonLayout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    place-items: center;
+  
+    position: fixed;
+    bottom: 10px;
+    width: 100vw;
+}
+.paginationLayout{
+    display: flex;
+    border: 1px solid white;
+    flex-direction: column;
+    }
+
+
+
+.button{
+    border: none;
+    background: none;
+    color: rgb(200, 51, 76);
+    font-size: 45px;
+    cursor: pointer;
+    border-radius: 50%;
+   height: 90px;
+}
+

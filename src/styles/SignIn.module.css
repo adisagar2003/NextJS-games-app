@@ -1,0 +1,106 @@
+.SignIn{
+    width: 600px;
+    height: 500px;
+
+    display: flex;
+    z-index: 9;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #efefef;
+    position: relative;
+    background-color: #040303;
+
+}
+
+.SignInLayout{
+
+    width: 100vw;
+    z-index: 7;
+    background-color: rgba(0, 0, 0, 0.733);
+    height: 100vh;
+
+    position: fixed;
+top:0;
+
+    display: grid;
+    place-items: center;
+}
+
+
+
+.close{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    
+}
+
+
+
+.formData{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    gap: 10px;
+    margin-bottom: 100px;
+
+}
+
+.formData input{
+    padding: 12px;
+
+    color: black;
+    border: none;
+    border: 1px solid #4e4e4e;
+    
+
+}
+
+
+.formData input:focus{
+    outline: none;
+    border: 2px solid #aaaaaa;
+
+}
+
+.close{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 25px;
+    font-family:sans-serif;
+    top: 20px;
+    padding: 3px;
+    
+    cursor: pointer;
+    right: 10px;
+}
+
+
+@media screen and (max-width:600px) {
+    
+
+    .SignIn{
+        width: 400px;
+        height: 400px;
+    }
+}
+
+.loginButton{
+    height: 40px;
+    border-radius: 0px;
+    color: black;
+    padding: 1px;
+    background-color: white;
+    outline: none;
+    border: none;
+    font-weight: 700;
+    font-family: sans-serif;
+
+}
+
+.action{
+    font-family: sans-serif;
+    
+}
