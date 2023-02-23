@@ -2,14 +2,18 @@ import { useEffect, useState } from "react";
 import styles from "@/styles/Register.module.css";
 import BlurBlob from "@/components/BlurBlob";
 import Card from "@/components/Card";
+import { ClipLoader } from "react-spinners";
+
 function register() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [profilePicture, setProfilePicture] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading,isLoading] = useState(false);
   const [error, setError] = useState(null);
   async function register() {
+    isLoading(true);
     let data = JSON.stringify({
       userName: userName,
       password: password,
@@ -37,12 +41,18 @@ function register() {
           console.log(result);
           if (result.error) {
             setError(result.error);
+          isLoading(false);
+           
           } else {
+
             location.href = "/";
+            isLoading(false);
+            
           }
         });
       } else {
         setError("Password length should be at least 8 characters long");
+        isLoading(false);
       }
     }
   }
@@ -52,6 +62,7 @@ function register() {
       setError("Passwords don't match");
     } else {
       setError(null);
+      
     }
   }
 
@@ -90,7 +101,7 @@ function register() {
             placeholder="confirm password"
             onChange={(e) => changeText(e, setConfirmPassword)}
           />
-          <button onClick={register}>Register</button>
+          <button onClick={register}>{loading ? (<ClipLoader />):(<div>Register</div>)}</button>
         </div>
       </div>
       <div className={styles.registerForm}>

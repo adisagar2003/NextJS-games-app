@@ -82,12 +82,13 @@ gap: 30px;
 @media screen and (max-width: 1600px) {
     .layout{
         display: grid;
+      
         grid-template-columns: 100%;
     }
     .headingLayout{
         display: flex;
         flex-direction: column;
-        padding: 3px;
+        
         transform: scale(1,1);
     }
 
@@ -119,4 +120,14 @@ gap: 30px;
     font-weight: 100;
     opacity: .5;
     margin-top: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .layout{
+    }
+
+    .layout img{
+        width: 80%;
+    }
+    
 }

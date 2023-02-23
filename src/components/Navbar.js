@@ -60,7 +60,7 @@ export default function Navbar(props, setSignInModal) {
         )}
         <Link href="/about">About</Link>
         <Link href="/register">Register</Link>
-        <Link href="/topGames">Features</Link>
+        <Link href="/topGames">Games</Link>
       </div>
     </div>
   );
