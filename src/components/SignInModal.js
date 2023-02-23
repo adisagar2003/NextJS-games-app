@@ -3,17 +3,16 @@ import { useState } from "react";
 import Link from "next/link";
 import Logo from "./Logo";
 import { useCookies } from "react-cookie";
+import { ClipLoader } from "react-spinners";
 
 function SignInModal(props) {
-
-
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordValid, setPasswordValid] = useState(false);
   const [userNameValid, setUserNameValid] = useState(false);
   const [error, setError] = useState(false);
   const [cookie, setCookie] = useCookies();
-
+  const [loading, setLoading] = useState(false);
   let data = { userName: userName, password: password };
 
   function changeText(e, targetFunction) {
@@ -22,6 +21,7 @@ function SignInModal(props) {
   }
   async function Login() {
     //1. Fetch data from api
+    setLoading(true);
     const response = await fetch("/api/auth", {
       method: "Post",
       body: JSON.stringify({ userName: userName, password: password }),
@@ -33,6 +33,7 @@ function SignInModal(props) {
 
     if (response.status == 400) {
       setError(true);
+      setLoading(false);
       setTimeout(() => {
         setError(false);
       }, 3000);
@@ -47,6 +48,10 @@ function SignInModal(props) {
         "userData",
         JSON.stringify({ isLoggedIn: true, ...user_data.userData })
       );
+
+      location.reload();
+
+      setLoading(false);
     }
 
     //2.
@@ -82,7 +87,7 @@ function SignInModal(props) {
           <input type="text" onChange={(e) => changeText(e, setUserName)} />
           <input type="password" onChange={(e) => changeText(e, setPassword)} />
           <button className={styles.loginButton} onClick={Login}>
-            Login
+            {loading ? <ClipLoader /> : <p>Login</p>}
           </button>
         </div>
         <div className={styles.action}>

@@ -38,6 +38,8 @@
   @media screen and (max-width: 600px) {
 	.Heading{
 		font-size: 6vw;
+		margin-left:70px;
+		width: 250px;
 	}
 
 
@@ -165,14 +167,18 @@ padding-left: 20px;
 	.GameImages{
 		display: none;
 	}
+
+	
 	.layout{
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
-		width: 80%;
+	
 		display: grid;
-		place-items: center;
+	
+		place-content: center;
+			place-items: center;
 	}	
 }
 
@@ -193,7 +199,7 @@ padding-left: 20px;
 
 
 		.GameImages img{
-width: 50%;
+width: 500px;
 height: 100%;
 position: absolute;
 		}
