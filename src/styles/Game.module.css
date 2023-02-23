@@ -2,7 +2,6 @@
     width: 80vw;
     height: 85vh;
     padding: 5px;
-    border: 1px solid white;
     background: rgba(220, 220, 27, 0.049);
     box-shadow: 20px -10px 30px #202020;
     backdrop-filter: blur(10px);
