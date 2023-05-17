@@ -3,10 +3,14 @@ import styles from "@/styles/Register.module.css";
 import BlurBlob from "@/components/BlurBlob";
 import Card from "@/components/Card";
 import { ClipLoader } from "react-spinners";
+import Navbar from "@/components/Navbar";
+import SignInModal from "@/components/SignInModal";
+import { withIronSessionSsr } from "iron-session/next";
 
-function register() {
+function register(props) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [signInModal, setSignInModal] = useState(false);
   const [email, setEmail] = useState("");
   const [profilePicture, setProfilePicture] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -75,41 +79,46 @@ function register() {
   }, [userName, password, confirmPassword]);
 
   return (
-    <div className={styles.registerLayout}>
-      <BlurBlob />
+    <>
+    <Navbar setSignInModal={setSignInModal} user={props.user}  />
+    <div className={styles.registerPage}>
+    {signInModal && <SignInModal setSignInModal={setSignInModal} />}
 
-      <div className={styles.registerCardBg}>
+      <div className={styles.registerLayout}>
+
         <div className={styles.formContent}>
-          <input
-            type="text"
-            placeholder="email"
-            onChange={(e) => changeText(e, setEmail)}
-          />
 
-          <input
-            type="text"
-            placeholder="username"
-            onChange={(e) => changeText(e, setUserName)}
-          />
-          <input
-            type="text"
-            placeholder="password"
-            onChange={(e) => changeText(e, setPassword)}
-          />
-          <input
-            type="text"
-            placeholder="confirm password"
-            onChange={(e) => changeText(e, setConfirmPassword)}
-          />
-          <button onClick={register}>{loading ? (<ClipLoader />):(<div>Register</div>)}</button>
         </div>
-      </div>
-      <div className={styles.registerForm}>
-        {error && <div>{error}</div>}
-        <div className={styles.AvatarCards}></div>
+
       </div>
     </div>
+    </>
   );
 }
 
+export const getServerSideProps = withIronSessionSsr(
+  async function getServerSideProps({ req }) {
+    const user = req.session.user;
+    if (!user) {
+      return {
+        props: {
+          user: false,
+        },
+      };
+    }
+    return {
+      props: {
+        user: req.session.user,
+      },
+    };
+  },
+  {
+    cookieName: "access_token",
+    password: process.env.NEXT_PUBLIC_COOKIE_SECRET,
+    // secure: true should be used in production (HTTPS) but can't be used in development (HTTP)
+    cookieOptions: {
+      secure: process.env.NODE_ENV === "production",
+    },
+  }
+);
 export default register;

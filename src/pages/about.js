@@ -11,15 +11,7 @@ function about() {
       {signInModal && <SignInModal setSignInModal={setSignInModal} />}
       <BlurBlob />
       <Navbar setSignInModal={setSignInModal} />
-      <div className={styles.Heading}>Best Site for free games</div>
-      <div className={styles.techStack}>
-        <div className={styles.Heading}>Tech Stack Used</div>
-        <ul>
-          <li>MongoDB</li>
-          <li>NextJS</li>
-          <li>Framer Motion</li>
-        </ul>
-      </div>
+      
     </div>
   );
 }

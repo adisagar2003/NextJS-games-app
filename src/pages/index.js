@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
 import Navbar from "@/components/Navbar";
@@ -10,9 +10,12 @@ const inter = Inter({ subsets: ["latin"] });
 
 
 import { withIronSessionSsr } from "iron-session/next";
+import SplineTool from "@/components/SplineTool";
+import LoadingScreen from "@/components/LoadingScreen";
 
 export default function Home(props) {
   const [signInModal, setSignInModal] = useState(false);
+  const [showLoading, setLoading] = useState(true);
   console.log(props.user, "props.user");
   const cardVariants = {
     offscreen: {
@@ -28,8 +31,17 @@ export default function Home(props) {
       },
     },
   };
+
+  useEffect(()=>{
+    const timer = setTimeout(() => {
+      setLoading(false);
+      console.log(LoadingScreen, 'AA')
+    }, 4000);
+    return () => clearTimeout(timer);
+  },[]);
   return (
     <>
+    {showLoading && <LoadingScreen />}
       {signInModal && <SignInModal setSignInModal={setSignInModal} />}
       <BlurBlob />
       <Navbar setSignInModal={setSignInModal} user={props.user} />
@@ -38,9 +50,11 @@ export default function Home(props) {
           whileHover={{ opacity: 1.2 }}
           onHoverStart={(e) => {}}
           onHoverEnd={(e) => {}}
+          style={{width:600, borderRadius:40 ,overflow:"hidden"}}
           className={styles.GameImages}
         >
-          <img src="https://rare-gallery.com/uploads/posts/5299958-computer-arcade-gaming-pinball-classic-game-frogger-arcade-game-light-dark-moody-blue-colour-night-red-game-retro-neon-public-domain-images.jpg" />
+          
+          <SplineTool />
         </motion.div>
         <div className={styles.Heading}>
           {" "}

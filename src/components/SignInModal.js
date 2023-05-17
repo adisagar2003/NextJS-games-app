@@ -81,11 +81,15 @@ function SignInModal(props) {
           X
         </div>
         <div className={styles.logo}>
+          <div className={styles.sampleUser}>
+            <p>Username:<b>user</b> </p>
+            <p>Password:<b>password</b> </p>
+          </div>
           <Logo width="100" height="100" />
         </div>
         <div className={styles.formData}>
-          <input type="text" onChange={(e) => changeText(e, setUserName)} />
-          <input type="password" onChange={(e) => changeText(e, setPassword)} />
+          <input type="text" placeholder="Username" onChange={(e) => changeText(e, setUserName)} />
+          <input type="password" placeholder="Password" onChange={(e) => changeText(e, setPassword)} />
           <button className={styles.loginButton} onClick={Login}>
             {loading ? <ClipLoader /> : <p>Login</p>}
           </button>

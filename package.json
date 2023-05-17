@@ -11,6 +11,8 @@
   "dependencies": {
     "@next/font": "13.1.6",
     "@reduxjs/toolkit": "^1.9.3",
+    "@splinetool/react-spline": "^2.2.6",
+    "@splinetool/runtime": "^0.9.335",
     "bcrypt": "^5.1.0",
     "classnames": "^2.3.2",
     "framer-motion": "^9.0.4",
