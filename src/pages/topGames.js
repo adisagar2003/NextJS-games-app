@@ -39,6 +39,7 @@ function topGames({ games, user }) {
             <ClipLoader
               color={"#ffffff"}
               loading={isLoading}
+              styles={{position:'absolute', left:'50%', height:'50%'}}
               cssOverride={false}
               size={150}
               aria-label="Loading Spinner"

@@ -22,6 +22,51 @@
     border-radius: 30px;
     font-family: sans-serif;
     align-items: center;
-    border:1px solid white;
+}
+
+
+.registerLayout h4{
+    margin-top: 14px;
+    padding: 14px;
+}
+
+.formContent{
+    padding:14px;
+    display: flex;
+    flex-direction: column;
+    gap:14px;
+    margin-top: 50px;
+}
+
+.formContent input{
+    padding:7px;
+    border-radius: 3px;
+    width:300px;
+    border:none;
+
+
+}
+
+
+.registerFlexBox{
+  display: flex;
+  border: 1px solid white;
+  border-radius: 23px;
+  overflow: hidden;
+
+}
+
+
+.backgroundImage{
+    width:340px;
+    height:500px;
+    overflow: hidden;
+}
+
+.backgroundImage img{
+    object-fit: contain;
+    height: 100%;
+ 
+  
 }
 

@@ -6,6 +6,8 @@ import { ClipLoader } from "react-spinners";
 import Navbar from "@/components/Navbar";
 import SignInModal from "@/components/SignInModal";
 import { withIronSessionSsr } from "iron-session/next";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function register(props) {
   const [userName, setUserName] = useState("");
@@ -25,8 +27,8 @@ function register(props) {
         "https://images.unsplash.com/photo-1617957718614-8c23f060c2d0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8b3JhbmdlJTIwZ3JhZGllbnR8ZW58MHx8MHx8&w=1000&q=80",
       email: email,
     });
-    if (userName != "") {
-      if (password.length > 7) {
+    if (userName != "" || confirmPassword!="" || password!=""||email!="") {
+      if (password.length > 7 && password==confirmPassword) {
         const response = await fetch("/api/user", {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
           mode: "cors", // no-cors, *cors, same-origin
@@ -55,9 +57,30 @@ function register(props) {
           }
         });
       } else {
+        toast.error('Passwords dont match/null provided', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });
         setError("Password length should be at least 8 characters long");
         isLoading(false);
       }
+    }else{
+      toast.error('Password length should be at least 8 characters long', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
     }
   }
   function changeText(e, targetFunction) {
@@ -70,6 +93,8 @@ function register(props) {
     }
   }
 
+
+  
   useEffect(() => {
     if (confirmPassword != password) {
       setError("Passwords don't match");
@@ -83,13 +108,22 @@ function register(props) {
     <Navbar setSignInModal={setSignInModal} user={props.user}  />
     <div className={styles.registerPage}>
     {signInModal && <SignInModal setSignInModal={setSignInModal} />}
-
-      <div className={styles.registerLayout}>
-
-        <div className={styles.formContent}>
+      
+      <div className={styles.registerFlexBox}>
+        <div className={styles.backgroundImage}>
+              <img src={'/assets/leon.jfif'} />
+        </div>
+        <div className={styles.registerLayout}>
+          <h4>Join to gain access to games around the globe</h4>
+          <div className={styles.formContent}>
+            <input placeholder="Email" type="text"  onChange={(e)=>setEmail(e.target.value)} />
+            <input placeholder="Username" type="text"  onChange={(e)=>setUserName(e.target.value)} />
+            <input placeholder="Password" type="password" onChange={(e)=>setPassword(e.target.value)} />
+            <input placeholder="Confirm Password" type="password" onChange={(e)=>setConfirmPassword(e.target.value)} />
+            <button onClick={register}>Register</button>
+          </div>
 
         </div>
-
       </div>
     </div>
     </>

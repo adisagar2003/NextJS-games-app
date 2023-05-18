@@ -14,6 +14,7 @@ import SplineTool from "@/components/SplineTool";
 import LoadingScreen from "@/components/LoadingScreen";
 
 export default function Home(props) {
+  const [splineVisible, setSplineVisible] = useState(false);
   const [signInModal, setSignInModal] = useState(false);
   const [showLoading, setLoading] = useState(true);
   console.log(props.user, "props.user");
@@ -39,6 +40,14 @@ export default function Home(props) {
     }, 4000);
     return () => clearTimeout(timer);
   },[]);
+  useEffect(()=>{
+    const timer = setTimeout(() => {
+      setSplineVisible(true);
+    }, 4500);
+    return () => clearTimeout(timer);
+  },[]);
+
+
   return (
     <>
     {showLoading && <LoadingScreen />}
@@ -54,14 +63,14 @@ export default function Home(props) {
           className={styles.GameImages}
         >
           
-          <SplineTool />
+         {splineVisible && <div style={{backgroundColor:'red', width:300, height:500}}><SplineTool /></div>}
         </motion.div>
         <div className={styles.Heading}>
           {" "}
           latest products and updates in the gaming industry
         </div>
       </div>
-    </>
+    </> 
   );
 }
 

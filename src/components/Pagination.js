@@ -40,16 +40,7 @@ function Pagination({ children, className }) {
       {children.slice(currentPage * 6, (currentPage + 1) * 6)}
 
       <div className={styles.buttonLayout}>
-        <button onClick={() => decreasePage()} className={styles.button}>
-          <BsArrowLeftCircleFill />
-        </button>
-        <button
-          onClick={() => increasePage()}
-          className={styles.button}
-          action={increasePage}
-        >
-          <BsArrowRightCircleFill />
-        </button>
+       
       </div>
     </motion.div>
   );
