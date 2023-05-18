@@ -50,6 +50,8 @@ export default function Navbar(props, setSignInModal) {
                 >
                   Logout
                 </a>
+
+                <a href="/create">Upload your game</a>
               </motion.div>
             )}
           </div>

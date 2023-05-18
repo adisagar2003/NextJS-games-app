@@ -1,0 +1,10 @@
+.createGameLayout{
+    border: 1px solid white;
+    position:fixed;
+    height:100vh;
+    top: 0;
+    width: 100vw;
+    display: grid;
+    z-index: -1;
+    place-items: center;
+}
